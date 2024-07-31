@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>awalan aja</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      height: 100%;
+      background-image: url('Gambar/wp.jpg');
+      background-size: cover;
+      background-position: center;
+      overflow-x: hidden;
+      overflow-y: auto; /* Pastikan scroll vertikal diizinkan */
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .page {
+      text-align: center;
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      background-color: rgba(154, 95, 137, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      margin: 0 auto; /* Pastikan elemen berada di tengah */
+      position: relative; /* Memungkinkan penempatan elemen absolut */
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif; /* Font baru untuk judul */
+      font-weight: 700; /* Tebal */
+      color: #ffffff;
+      margin: 0;
+      font-size: 2.5em; /* Ukuran font lebih besar */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Menambahkan bayangan teks */
+    }
+
+    h2 {
+      color: #ffffff;
+      font-weight: 600;
+      margin: 0;
+      font-size: 1.8em;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    p {
+      color: #f0f0f0;
+      margin: 10px 0;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    p:hover {
+      color: #ff69b4; /* Warna teks saat hover */
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 24px; /* Ukuran font lebih besar untuk emoji */
+      cursor: pointer;
+      background-color: #ff69b4; /* Latar belakang tombol */
+      color: #ffffff; /* Warna teks tombol */
+      border: 2px solid #ff69b4; /* Bingkai tombol */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Efek bayangan */
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      font-family: 'Roboto', sans-serif; /* Font tombol */
+    }
+
+    button:hover {
+      background-color: #f6b2d4; /* Warna latar belakang saat hover */
+      color: #000000; /* Warna teks saat hover */
+    }
+
+    button:active {
+      background-color: #ff1493; /* Warna latar belakang saat ditekan */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Efek bayangan saat ditekan */
+      transform: translateY(2px); /* Efek tombol tertekan */
+    }
+
+    input[type="password"] {
+      padding: 12px;
+      font-size: 18px;
+      margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #007BFF;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      font-family: 'Roboto', sans-serif; /* Font input */
+    }
+
+    input[type="password"]:focus {
+      border-color: #0056b3;
+    }
+
+    #error-message {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .gif-container {
+      margin-bottom: 20px; /* Jarak antara GIF dan teks di bawahnya */
+    }
+
+    .gif-container img {
+      max-width: 70%; /* Menyesuaikan ukuran GIF */
+      height: auto;
+      display: block; /* Pastikan gambar tidak melayang di bawah teks */
+      margin: 0 auto; /* Pastikan gambar berada di tengah */
+    }
+
+    .text-below-gif {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .page {
+        padding: 15px;
+        max-width: 90%;
+      }
+
+      button {
+        font-size: 20px; /* Ukuran font lebih kecil pada perangkat kecil */
+        padding: 10px 20px;
+      }
+
+      input[type="password"] {
+        font-size: 16px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Halaman Cover -->
+    <div id="cover-page" class="page">
+      <h1>SELAMAT DATANG</h1>
+      <div class="gif-container">
+        <img src="Gambar/gif1.gif" alt="Loading GIF">
+      </div>
+      <div class="text-below-gif">
+        <p>klik tombol jika ingin lanjut</p>
+        <button onclick="showPasswordPage()">💌</button>
+      </div>
+    </div>
+
+    <!-- Halaman Password -->
+    <div id="password-page" class="page" style="display: none;">
+      <h2>Masukin Passwordnyaa</h2>
+      <p>Kalau gatau bisa nanya ke Galih</p>
+      <form onsubmit="return checkPassword()">
+        <input type="password" id="password" placeholder="apa hayoooo?" required>
+        <button type="submit">🔐</button>
+      </form>
+      <p id="error-message">parah banget gatau password</p>
+    </div>
+  </div>
+
+  <script>
+    function showPasswordPage() {
+      document.getElementById('cover-page').style.display = 'none';
+      document.getElementById('password-page').style.display = 'block';
+    }
+
+    function checkPassword() {
+      var password = document.getElementById('password').value;
+      var correctPassword = 'akusayanggalih'; // Ganti dengan password yang Anda inginkan
+
+      if (password === correctPassword) {
+        window.location.href = 'https://akugalihdamar.github.io/buatrona.github.io/';
+        return false; // Mencegah submit form
+      } else {
+        document.getElementById('error-message').style.display = 'block';
+        return false; // Mencegah submit form
+      }
+    }
+  </script>
+</body>
+</html>
