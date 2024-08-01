@@ -40,6 +40,7 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       margin: 0 auto; /* Pastikan elemen berada di tengah */
       position: relative; /* Memungkinkan penempatan elemen absolut */
+      z-index: 1; /* Pastikan elemen berada di atas kanvas */
     }
 
     h1 {
@@ -152,9 +153,22 @@
         padding: 10px;
       }
     }
+
+    /* Styles for the falling love particles */
+    #particle-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Ensures clicks pass through */
+      z-index: 0; /* Place behind other content */
+    }
   </style>
 </head>
 <body>
+  <canvas id="particle-canvas"></canvas>
+
   <div class="container">
     <!-- Halaman Cover -->
     <div id="cover-page" class="page">
@@ -198,6 +212,65 @@
         return false; // Mencegah submit form
       }
     }
+
+    // Falling heart particles effect
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const colors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFB6C1'];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    function createParticle() {
+      const x = Math.random() * canvas.width;
+      const y = 0;
+      const speed = 1 + Math.random() * 3;
+      const size = Math.random() * 10 + 5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particles.push({ x, y, speed, size, color });
+    }
+
+    function drawHeart(ctx, x, y, size, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size / 2, y + size / 2, x, y + size / 2);
+      ctx.bezierCurveTo(x + size / 2, y + size / 2, x + size / 2, y - size / 2, x, y);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function updateParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.y += p.speed;
+        if (p.y > canvas.height) particles.splice(i--, 1);
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        drawHeart(ctx, p.x, p.y, p.size, p.color);
+      }
+    }
+
+    function animate() {
+      createParticle();
+      updateParticles();
+      drawParticles();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
+
+
