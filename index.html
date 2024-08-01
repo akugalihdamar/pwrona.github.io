@@ -1,276 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>awalan aja</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      height: 100%;
-      background-image: url('Gambar/wp.jpg');
-      background-size: cover;
-      background-position: center;
-      overflow-x: hidden;
-      overflow-y: auto; /* Pastikan scroll vertikal diizinkan */
-    }
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  text-align: center;
+  background-image: url('Gambar/wp.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow-y: auto;
+  padding: 20px;
+}
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(154, 95, 137, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s ease-in-out;
+  max-width: 90%;
+  margin: 20px auto; /* Center the container */
+}
 
-    .page {
-      text-align: center;
-      padding: 20px;
-      max-width: 400px;
-      width: 90%;
-      background-color: rgba(154, 95, 137, 0.8);
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      margin: 0 auto; /* Pastikan elemen berada di tengah */
-      position: relative; /* Memungkinkan penempatan elemen absolut */
-      z-index: 1; /* Pastikan elemen berada di atas kanvas */
-    }
-
-    h1 {
-      font-family: 'Poppins', sans-serif; /* Font baru untuk judul */
-      font-weight: 700; /* Tebal */
-      color: #ffffff;
-      margin: 0;
-      font-size: 2.5em; /* Ukuran font lebih besar */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Menambahkan bayangan teks */
-    }
-
-    h2 {
-      color: #ffffff;
-      font-weight: 600;
-      margin: 0;
-      font-size: 1.8em;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-    }
-
-    p {
-      color: #f0f0f0;
-      margin: 10px 0;
-      font-size: 18px;
-      transition: color 0.3s ease;
-    }
-
-    p:hover {
-      color: #ff69b4; /* Warna teks saat hover */
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 24px; /* Ukuran font lebih besar untuk emoji */
-      cursor: pointer;
-      background-color: #ff69b4; /* Latar belakang tombol */
-      color: #ffffff; /* Warna teks tombol */
-      border: 2px solid #ff69b4; /* Bingkai tombol */
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Efek bayangan */
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      font-family: 'Roboto', sans-serif; /* Font tombol */
-    }
-
-    button:hover {
-      background-color: #f6b2d4; /* Warna latar belakang saat hover */
-      color: #000000; /* Warna teks saat hover */
-    }
-
-    button:active {
-      background-color: #ff1493; /* Warna latar belakang saat ditekan */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Efek bayangan saat ditekan */
-      transform: translateY(2px); /* Efek tombol tertekan */
-    }
-
-    input[type="password"] {
-      padding: 12px;
-      font-size: 18px;
-      margin-top: 10px;
-      width: 100%;
-      box-sizing: border-box;
-      border: 2px solid #007BFF;
-      border-radius: 8px;
-      outline: none;
-      transition: border-color 0.3s ease;
-      font-family: 'Roboto', sans-serif; /* Font input */
-    }
-
-    input[type="password"]:focus {
-      border-color: #0056b3;
-    }
-
-    #error-message {
-      color: red;
-      margin-top: 10px;
-      font-size: 14px;
-      display: none;
-    }
-
-    .gif-container {
-      margin-bottom: 20px; /* Jarak antara GIF dan teks di bawahnya */
-    }
-
-    .gif-container img {
-      max-width: 70%; /* Menyesuaikan ukuran GIF */
+.gift-image {
+      margin-bottom: 20px; /* Ruang di bawah gambar */
+      width: 100px; /* Lebar gambar bisa disesuaikan */
       height: auto;
-      display: block; /* Pastikan gambar tidak melayang di bawah teks */
-      margin: 0 auto; /* Pastikan gambar berada di tengah */
     }
 
-    .text-below-gif {
-      margin-top: 10px;
-      font-size: 20px;
-      font-weight: 500;
+h1, h2, p {
+  margin: 0;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s, opacity 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-content {
+  max-height: 75vh;
+  overflow-y: auto;
+  background-color: rgba(255, 182, 193, 0.7);
+  padding: 10px;
+  border-radius: 15px;
+  width: 100%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-content p {
+  text-align: left;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.profile-container img {
+  height: 150px;
+  width: 150px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.profile-container img:hover {
+  transform: rotate(360deg);
+}
+
+.loading-screen, .intermediate-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(243, 95, 221, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden, .intermediate-loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Partikel */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: float 3s ease-in-out infinite;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.photo-item {
+  flex: 1 1 calc(33% - 40px);
+  max-width: calc(33% - 40px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.photo-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.photo-item p {
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #fff;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .photo-item {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .scroll-content {
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); opacity: 0; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+    .loading-screen.hidden, .intermediate-loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
     }
 
-    @media (max-width: 600px) {
-      .page {
-        padding: 15px;
-        max-width: 90%;
-      }
-
-      button {
-        font-size: 20px; /* Ukuran font lebih kecil pada perangkat kecil */
-        padding: 10px 20px;
-      }
-
-      input[type="password"] {
-        font-size: 16px;
-        padding: 10px;
-      }
-    }
-
-    /* Styles for the falling love particles */
-    #particle-canvas {
+    /* Partikel */
+    .particles {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none; /* Ensures clicks pass through */
-      z-index: 0; /* Place behind other content */
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    /* foto kenangan */
+    .photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    }
+
+    .photo-item {
+    flex: 1 1 calc(33% - 40px); /* Membuat tiga kolom dengan gap */
+    max-width: calc(33% - 40px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .photo-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    }
+
+    .photo-item p {
+    padding: 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: left;
+    }
+
+    @media (max-width: 768px) {
+    .photo-item {
+        flex: 1 1 calc(50% - 20px); /* Menjadi dua kolom pada layar lebih kecil */
+        max-width: calc(50% - 20px);
+    }
+    }
+
+    @media (max-width: 480px) {
+    .photo-item {
+        flex: 1 1 calc(100% - 10px); /* Menjadi satu kolom pada layar sangat kecil */
+        max-width: calc(100% - 10px);
+    }
+
+    .photo-item p {
+        font-size: 0.8rem;
+    }
+    }
+
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      button {
+        font-size: 1.2rem;
+        padding: 12px 24px;
+      }
+
+      .scroll-content {
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1, h2 {
+        font-size: 1.2rem;
+      }
+
+      .container {
+        width: 90%;
+        padding: 15px;
+      }
+
+      .scroll-content {
+        font-size: 0.9rem;
+      }
     }
   </style>
+  <title>Buat Rona &#128150;</title>
 </head>
 <body>
-  <canvas id="particle-canvas"></canvas>
+  <audio id="background-music" src="Gambar/backsound.mp3" loop></audio>
 
-  <div class="container">
-    <!-- Halaman Cover -->
-    <div id="cover-page" class="page">
-      <h1>SELAMAT DATANG</h1>
-      <div class="gif-container">
-        <img src="Gambar/gif1.gif" alt="Loading GIF">
-      </div>
-      <div class="text-below-gif">
-        <p>klik tombol jika ingin lanjut</p>
-        <button onclick="showPasswordPage()">💌</button>
-      </div>
-    </div>
+  <div class="loading-screen" id="loading-screen">
+    <h2>Tunggu bentar ya...</h2>
+  </div>
 
-    <!-- Halaman Password -->
-    <div id="password-page" class="page" style="display: none;">
-      <h2>Masukin Passwordnyaa</h2>
-      <p>Kalau gatau bisa nanya ke Galih</p>
-      <form onsubmit="return checkPassword()">
-        <input type="password" id="password" placeholder="apa hayoooo?" required>
-        <button type="submit">🔐</button>
-      </form>
-      <p id="error-message">parah banget gatau password</p>
+  <div class="intermediate-loading-screen hidden" id="intermediate-loading-screen">
+    <h2>Loading bentar...</h2>
+  </div>
+
+  <div class="particles" id="particles"></div>
+
+  <!-- Halaman 1 -->
+  <div class="container" id="page1">
+    <img src="Gambar/gift.gif" alt="Gift" class="gift-image" /> <!-- Gambar gift -->
+    <h1>Hai manisku ada sesuatu nih!</h1>
+    <p>Klik tombol di bawah ya kalo kamu penasaran hihi, diplay dulu lagunya biar ga gabut</p>
+    <div class="button-container">
+      <button onclick="toggleMusic()">🎵</button>
+      <button onclick="showPageWithLoading('page2')">&#128140;</button>
     </div>
   </div>
 
+  <!-- Halaman 2 -->
+  <div class="container" id="page2">
+    <h1>Cie pasti penasaran kan hahah</h1>
+    <p>aku sebenernya cuma pengen ngasi tau yang aku rasain sih hehe</p>
+    <div class="scroll-content">
+      <p>Hai Ronaa cantik...aku sebenernya ii suka sama kamu dah lama banget hahah, ga nyangka banget tau kita bisa deket kya gini, dari yang cuma bisa mengagumi sekarang mungkin bisa memiliki haha alay lih,</p>
+      <p>Kita pertama kenal tu setahun lalu ya haha, kamu dulu sempet chatan sama aku tapi akhirnya lostcontact yaa, kita jalan sendiri sendiri dan suatu hari gatau kenapa kita chatan lagi hahaha lucu kalo diinget, kita mulai deket lagi gara gara aku bantu kamu pas motormu mogok yakan habistu lanjut sampai sekarang wleeeee</p>
+      <p>Banyak hal yang aku suka dari kamu, mulai dari cantikmu manismu gatau setiap ngeliat kamu tu aku rasane ga nyangka aja gitu, sikapmu juga, aku suka caramu ngetreat aku ngesupport aku itu mungkin menurutmu hal yang biasa ya tapi itu buat aku berarti banget tauuu, kamu baik banget sama aku, kamu sama sekali ga pernah buat aku sedih cuman tengil aja paling hahahah </p>
+      <p>aku mau cerita dikit yang aku rasain. selama ini mulai dari kita kenal smpe deket kya sekarang itu aku banyak banget ngerasain seneng, kaya akhirnya aku bisa gini, aku diperhatiin aku dijadiin tempat cerita, aku bisa jadi tempat kamu cerita, aku punya tempat cerita banyak pokonyaa, hal yang aku paling inget dari kamu dan yoo yang bikin aku ngena gitu ish satu kata dari kamu pas kita ujan ujanan “jangan sakit yaa” itu kaya satu kata yang ga pernah aku denger atau pun gada yang pernah ngomong gitu ke aku, jadi aku deket sm kamu itu senengg bgt bahagia banget aku selalu diem klo liat kmu lgi ngapain kya ga nyangka aja kita bisa jalan sejauh ini kya aku bersyukur bgt, aku aja heran dari banyaknya cwo kenapa kamu welcomenya sma aku</p>
+      <p>Emm apa yaa..aku harap kamu selalu bahagia terus yaa, jangan ngerasa sendiri, Sekarang ada aku diini buat nemenin kamu, aku minta ke kamu jangan pernah ngerasa ga enak sama aku, aku disni buat support kamu, buat bantu kamu, yang paling penting aku disini bisa banget jadi tempat ceritamu, kamu gapapa banget kok mau cerita apa aja sama aku bakal aku dengerin, aku seneng kalo kamu gitu aku ngerasa dihargai kalo kamu gitu</p>
+      <p>Kamu jangan pernah bosen ya sama aku hehe..aku ii sayang banget sama kamu setiap vc ataupun call kadang aku mikir "aku pantes ga ya buat kamu",sebenernya banyak keraguan dihatiku, kaya "kamu nanti bahagia ga ya sama aku","aku bisa bikin kamu nyaman ga ya", aku sering ovt tentang kedepanya gimana, tapi......aku yakin aku bisa ngadepin ovtku karena semua itu harus dihadapi yakan, jadi aku berani ngambil keputusan buat deket dan serius sama kamu, aku gatau kedepanya gimana tapi inget I will try my best supaya kamu bahagia sama aku</p>
+      <p>Oh yaaaa..aku mau say sorry ke kamu, aku masih belajar mahamin kamu belajar ngertiin kamu, maaf juga aku sering mood swing yang pastinya bakal ngefek ke kmunya juga, aku bakal usahain jadi yang lebih baik bahkan versi galih yang terbaik untuk kamu</p>
+      <p></p>
+      <p>POKOKNYA JANGAN PERNAH BERIKIR KMU NGEREPOTIN AKU YAA? ENGGAK SAMA SEKALI AKU MALAH SENENG BANTU KAMU  </p>
+    </div>
+    <div class="button-container">
+      <button onclick="showPageWithLoading('page1')">Kembali</button>
+      <button onclick="showPageWithLoading('page3')">lanjut &#128150;</button>
+    </div>
+  </div>
+
+  <!-- Halaman 3 (Kenangan bersama) -->
+  <div class="container" id="page3">
+    <h1>Galih dan Rona si petualang</h1>
+    <div class="scroll-content">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="Gambar/kenangan1.jpg" alt="Kenangan 1">
+          <p>Ini pertama kita main bareng, inget ga? itu aku nganter kamu beli jam and itu first time aku ke photoboth haha sampe keringet dingin ish</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/kenangan2.jpg" alt="Kenangan 2">
+          <p>Foto ini waktu kita main ps di gaming ground, kita juga first time nyobain psan berdua disana.</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/kenangan3.jpg" alt="Kenangan 3">
+          <p>Ini foto kita main BL kedua kalinya, ini aku ngajak kamu main BL sama temen temenku, disitu kamu baru pulang dari kampus habis bahas soal uas</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/kenangan4.jpg" alt="Kenangan 4">
+          <p>Ini waktu kita jalan-jalan ke pantai, ini moment yang paling bagus sih menurutku gabisa aku ceritain disni karna ya itu panjang haha and memorable bgt, dan itu first time juga aku kepantai berdua sama cwek,kamu juga first time diijinin berdua main ke tempat jauh</p>
+          </div>
+        <div class="photo-item">
+          <img src="Gambar/kenangan5.jpg" alt="Kenangan 5">
+          <p>ini pas aku nemenin kamu maem di lapak chiken, kamu lagi bete gara gara aku bete hehe, aku nyoba hibur kamu itu supaya moodnya baik hehe.</p>
+          </div>
+        <div class="photo-item">
+          <img src="Gambar/kenangan6.jpg" alt="Kenangan 6">
+          <p>itu foto kita di Legi pahit, kita habis beli jajan diluwes habistu kamu ngide beli kopi ish ish ish, habistu kita maem terus main uno di legipahit yang berujung deeptalk haha.</p>
+          </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button onclick="showPageWithLoading('page2')">Kembali</button>
+      <button onclick="showPageWithLoading('page4')">Lanjut &#128150;</button>
+    </div>
+  </div>
+  
+ <!-- Halaman 4 (Kerandoman Pacar) -->
+ <div class="container" id="page4">
+    <h1>Silucu Ronaaaaaa</h1>
+    <div class="scroll-content">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="Gambar/random1.jpg" alt="Random 1">
+          <p>ini pas kmu milih jam, serius banget!</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random2.jpg" alt="Random 2">
+          <p>Ini waktu kamu nyoba beli eskrim yang baru di ss, kaya bocil tau pengen eskrim haha lucu bgt!</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random3.jpg" alt="Random 3">
+          <p>ini kita habis makan, aku iseng pap kamu hbis mam jeruk.</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random4.jpg" alt="Random 4">
+          <p>Foto ini pas kamu lagi belajar, mukamu lucu banget serius sekali ixixix</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random5.jpg" alt="Random 5">
+          <p>Ini pas kita main ke pantai, lihatlah bocah ini lagi liatin hewan kecil haha</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random6.jpg" alt="Random 6">
+          <p>ini pas kita maem, kamu lucu banget pas itu bikin gemes polllll</p>
+        </div>
+        <div class="photo-item">
+          <img src="Gambar/random7.jpg" alt="Random 7">
+          <p>Foto ini pas kamu sakit, jujur ga tega liat kamu sakit, dijaga  ya kesehatanya huuuu</p>
+          </div>
+        <div class="photo-item">
+          <img src="Gambar/random8.jpg" alt="Random 8">
+          <p>Ini pas kita di mixue, liato kamu capek tapi tengil banget mukanya</p>
+          </div>
+        <div class="photo-item">
+          <img src="Gambar/random9.jpg" alt="Random 9">
+          <p>ini pap pas aku nemenin kamu belanja, langsung dicoba dong apa tu namane ishhh pokonya buat bibir</p>
+          </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button onclick="showPageWithLoading('page3')">Kembali</button>
+      <button onclick="showPageWithLoading('page5')">Lanjut &#128150;</button>
+    </div>
+  </div>
+
+  <!-- Halaman 5 (Ajakan jadi pacar) -->
+  <div class="container" id="page5">
+    <div class="profile-container">
+      <img src="Gambar/profil.jpg" alt="profil" />
+    </div>
+    <h1>Hai Cantikku intinya ini sih</h1>
+    <h2>Kita udah deket lumayan lama juga, aku juga gamau kita ga punya status dan aku juga gamau dikira cuma main main sam kamu atau ga serius sama kamu, banyak hal yang udah kita jalanin dan itu semua bakal aku inget sampai kapanpun dimanapun aku berada ahay....,jadiiii...Kamu mau ga jadi pacar aku?</h2>
+    <div class="button-container">
+      <button onclick="mau()">MAU</button>
+      <button onclick="gak()">GAK</button>      
+    </div>
+    <!-- Tombol Kembali dipisahkan dan ditempatkan di bawah button-container -->
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="showPageWithLoading('page4')">Kembali</button>
+    </div>
+  </div>
+
+
+
+
   <script>
-    function showPasswordPage() {
-      document.getElementById('cover-page').style.display = 'none';
-      document.getElementById('password-page').style.display = 'block';
-    }
+    let musicPlaying = false;
 
-    function checkPassword() {
-      var password = document.getElementById('password').value;
-      var correctPassword = 'akusayanggalih'; // Ganti dengan password yang Anda inginkan
+    function toggleMusic() {
+      const audio = document.getElementById('background-music');
+      const playButton = document.querySelector('#page1 button');
 
-      if (password === correctPassword) {
-        window.location.href = 'https://akugalihdamar.github.io/buatrona.github.io/';
-        return false; // Mencegah submit form
+      if (musicPlaying) {
+        audio.pause();
+        playButton.textContent = '🎵';
       } else {
-        document.getElementById('error-message').style.display = 'block';
-        return false; // Mencegah submit form
+        audio.play();
+        playButton.textContent = '🔇';
       }
+
+      musicPlaying = !musicPlaying;
     }
 
-    // Falling heart particles effect
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    const particles = [];
-    const colors = ['#FF69B4', '#FF1493', '#FFC0CB', '#FFB6C1'];
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    function createParticle() {
-      const x = Math.random() * canvas.width;
-      const y = 0;
-      const speed = 1 + Math.random() * 3;
-      const size = Math.random() * 10 + 5;
-      const color = colors[Math.floor(Math.random() * colors.length)];
-      particles.push({ x, y, speed, size, color });
+   
+    function mau() {
+      alert("Makasih mau nerima aku :)");
+      alert("Maaf aku cuma bisa bikinin ginian");
+      alert("Kirim jawabannya ke WA aku ya");
+      location.assign("https://wa.me/6282223474384?text=Aku%20mau%20jadi%20pacar%20Galih%20><");
     }
 
-    function drawHeart(ctx, x, y, size, color) {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      ctx.bezierCurveTo(x - size / 2, y - size / 2, x - size / 2, y + size / 2, x, y + size / 2);
-      ctx.bezierCurveTo(x + size / 2, y + size / 2, x + size / 2, y - size / 2, x, y);
-      ctx.closePath();
-      ctx.fill();
+    function gak() {
+      alert("Emm okay gapapa aku hargai keputusanmu :(");
+      alert("Kirim jawabanmu ke wa yaa");
+      location.assign("https://wa.me/6282223474384?text=Maaf%20aku%20belum%20bisa%20jadi%20pacarmu%20sekarang");
     }
 
-    function updateParticles() {
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.y += p.speed;
-        if (p.y > canvas.height) particles.splice(i--, 1);
-      }
-    }
+    function hideLoadingScreen() {
+  document.getElementById('loading-screen').classList.add('hidden');
+}
 
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        drawHeart(ctx, p.x, p.y, p.size, p.color);
-      }
-    }
+function showPageWithLoading(pageId) {
+  const intermediateLoadingScreen = document.getElementById('intermediate-loading-screen');
+  const pages = document.querySelectorAll('.container');
 
-    function animate() {
-      createParticle();
-      updateParticles();
-      drawParticles();
-      requestAnimationFrame(animate);
-    }
+  intermediateLoadingScreen.classList.remove('hidden');
 
-    animate();
+  setTimeout(() => {
+    pages.forEach(page => page.style.display = 'none');
+    document.getElementById(pageId).style.display = 'block';
+    intermediateLoadingScreen.classList.add('hidden');
+  }, 1000);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  hideLoadingScreen();
+  showPageWithLoading('page1');
+});
+
+function createParticle(x, y) {
+  const particle = document.createElement('div');
+  particle.classList.add('particle');
+  particle.style.left = `${x}px`;
+  particle.style.top = `${y}px`;
+  document.getElementById('particles').appendChild(particle);
+  setTimeout(() => {
+    particle.remove();
+  }, 5000);
+}
+
+document.addEventListener('click', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+  createParticle(x, y);
+});
+
+window.addEventListener('load', () => {
+  for (let i = 0; i < 50; i++) {
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+    createParticle(x, y);
+  }
+});
+
   </script>
 </body>
 </html>
-
-
